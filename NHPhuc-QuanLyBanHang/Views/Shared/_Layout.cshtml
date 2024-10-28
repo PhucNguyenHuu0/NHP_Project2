@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        /* CSS cho Navbar */
+        .navbar {
+            background-color: #343a40; /* Màu nền */
+            border-radius: 0; /* Bo tròn các góc */
+        }
+
+        .navbar-nav > li > a {
+            color: #ffffff; /* Màu chữ */
+            padding: 15px 20px; /* Khoảng cách bên trong */
+        }
+
+            .navbar-nav > li > a:hover {
+                background-color: #495057; /* Màu nền khi di chuột */
+                color: #ffffff; /* Màu chữ khi di chuột */
+            }
+
+        .navbar-nav > li.active > a {
+            background-color: #007bff; /* Màu nền cho nút đang hoạt động */
+            color: #ffffff; /* Màu chữ cho nút đang hoạt động */
+        }
+
+        .navbar-brand {
+            color: #ffffff; /* Màu chữ cho brand */
+        }
+
+            .navbar-brand:hover {
+                color: #ffffff; /* Màu chữ cho brand khi di chuột */
+            }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Nguyen Huu Phuc", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                    <li>@Html.ActionLink("QTVs", "Index", "QTVs")</li>
+                    <li>@Html.ActionLink("Loaihangs", "Index", "Loaihangs")</li>
+                    <li>@Html.ActionLink("Hanghoas", "Index", "Hanghoas")</li>
+                    <li>@Html.ActionLink("Donhangs", "Index", "Donhangs")</li>
+                    <li>@Html.ActionLink("Donhangchitiets", "Index", "Donhangchitiets")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

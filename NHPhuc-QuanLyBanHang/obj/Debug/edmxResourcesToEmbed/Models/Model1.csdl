@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Donhang">
+    <Key>
+      <PropertyRef Name="MaDH" />
+    </Key>
+    <Property Name="MaDH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Ngaydat" Type="DateTime" Precision="3" />
+    <Property Name="Tongtien" Type="Double" />
+    <NavigationProperty Name="Donhangchitiet" Relationship="Self.FK__Donhangchi__MaDH__2C3393D0" FromRole="Donhang" ToRole="Donhangchitiet" />
+  </EntityType>
+  <EntityType Name="Donhangchitiet">
+    <Key>
+      <PropertyRef Name="MaDH" />
+      <PropertyRef Name="Mahang" />
+    </Key>
+    <Property Name="MaDH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Mahang" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Dongia" Type="Double" Nullable="false" />
+    <Property Name="Soluong" Type="Int32" />
+    <Property Name="Thanhtien" Type="Double" />
+    <NavigationProperty Name="Donhang" Relationship="Self.FK__Donhangchi__MaDH__2C3393D0" FromRole="Donhangchitiet" ToRole="Donhang" />
+    <NavigationProperty Name="Hanghoa" Relationship="Self.FK__Donhangch__Mahan__2D27B809" FromRole="Donhangchitiet" ToRole="Hanghoa" />
+  </EntityType>
+  <EntityType Name="Hanghoa">
+    <Key>
+      <PropertyRef Name="Mahang" />
+    </Key>
+    <Property Name="Mahang" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Tenhang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Dongia" Type="Double" />
+    <Property Name="Soluong" Type="Int32" />
+    <Property Name="Donvitinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Maloai" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Donhangchitiet" Relationship="Self.FK__Donhangch__Mahan__2D27B809" FromRole="Hanghoa" ToRole="Donhangchitiet" />
+    <NavigationProperty Name="Loaihang" Relationship="Self.FK__Hanghoa__Maloai__29572725" FromRole="Hanghoa" ToRole="Loaihang" />
+  </EntityType>
+  <EntityType Name="Loaihang">
+    <Key>
+      <PropertyRef Name="Maloai" />
+    </Key>
+    <Property Name="Maloai" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Tenloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Hanghoa" Relationship="Self.FK__Hanghoa__Maloai__29572725" FromRole="Loaihang" ToRole="Hanghoa" />
+  </EntityType>
+  <EntityType Name="QTV">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="hoten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gioitinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Donhangchi__MaDH__2C3393D0">
+    <End Role="Donhang" Type="Self.Donhang" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Donhangchitiet" Type="Self.Donhangchitiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Donhang">
+        <PropertyRef Name="MaDH" />
+      </Principal>
+      <Dependent Role="Donhangchitiet">
+        <PropertyRef Name="MaDH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Donhangch__Mahan__2D27B809">
+    <End Role="Hanghoa" Type="Self.Hanghoa" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Donhangchitiet" Type="Self.Donhangchitiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hanghoa">
+        <PropertyRef Name="Mahang" />
+      </Principal>
+      <Dependent Role="Donhangchitiet">
+        <PropertyRef Name="Mahang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Hanghoa__Maloai__29572725">
+    <End Role="Loaihang" Type="Self.Loaihang" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Hanghoa" Type="Self.Hanghoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loaihang">
+        <PropertyRef Name="Maloai" />
+      </Principal>
+      <Dependent Role="Hanghoa">
+        <PropertyRef Name="Maloai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyBanHangEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Donhang" EntityType="Self.Donhang" />
+    <EntitySet Name="Donhangchitiet" EntityType="Self.Donhangchitiet" />
+    <EntitySet Name="Hanghoa" EntityType="Self.Hanghoa" />
+    <EntitySet Name="Loaihang" EntityType="Self.Loaihang" />
+    <EntitySet Name="QTV" EntityType="Self.QTV" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK__Donhangchi__MaDH__2C3393D0" Association="Self.FK__Donhangchi__MaDH__2C3393D0">
+      <End Role="Donhang" EntitySet="Donhang" />
+      <End Role="Donhangchitiet" EntitySet="Donhangchitiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Donhangch__Mahan__2D27B809" Association="Self.FK__Donhangch__Mahan__2D27B809">
+      <End Role="Hanghoa" EntitySet="Hanghoa" />
+      <End Role="Donhangchitiet" EntitySet="Donhangchitiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Hanghoa__Maloai__29572725" Association="Self.FK__Hanghoa__Maloai__29572725">
+      <End Role="Loaihang" EntitySet="Loaihang" />
+      <End Role="Hanghoa" EntitySet="Hanghoa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
