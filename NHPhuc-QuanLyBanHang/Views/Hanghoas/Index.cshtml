@@ -1,63 +1,70 @@
 ﻿@model IEnumerable<NHPhuc_QuanLyBanHang.Models.Hanghoa>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh Sách Hàng Hóa";
 }
 
-<h2>Index</h2>
+<h2>Danh Sách Hàng Hóa</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo Mới", "Create", null, new { @class = "btn btn-primary" })
 </p>
+
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Tenhang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dongia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Soluong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Donvitinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Anh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loaihang.Tenloai)
-        </th>
-        <th></th>
-    </tr>
+    
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tenhang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dongia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Soluong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Donvitinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Anh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Loaihang.Tenloai)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Mahang }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Mahang }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Mahang })
-        </td>
-    </tr>
-}
-
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenhang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dongia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soluong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Donvitinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Loaihang.Tenloai)
+            </th>
+            <th>Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tenhang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dongia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soluong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Donvitinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Anh)
+                <td>
+                    @Html.DisplayFor(modelItem => item.Loaihang.Tenloai)
+                </td>
+                <td>
+                    <div class="btn-group" role="group">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Mahang }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Mahang }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Mahang }, new { @class = "btn btn-danger" })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

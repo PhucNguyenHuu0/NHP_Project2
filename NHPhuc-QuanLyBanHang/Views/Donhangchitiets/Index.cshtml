@@ -4,54 +4,60 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container mt-5">
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Dongia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Soluong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Thanhtien)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Donhang.MaDH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hanghoa.Tenhang)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary mb-3" })
+    </p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dongia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Soluong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Thanhtien)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Donhang.MaDH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hanghoa.Tenhang)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dongia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Soluong)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Thanhtien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Donhang.MaDH)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hanghoa.Tenhang)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dongia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Soluong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Thanhtien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Donhang.MaDH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hanghoa.Tenhang)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
